@@ -1,0 +1,20 @@
+<div class="menu-container">
+    <div class="row">
+        <div class=" col-md-9">
+            <nav class="horizontal-menu">
+                <ul>
+                    <li *ngFor="let item of menuItems" (click)="onMenuClick(item)">
+                        <a [routerLink]="item.link">{{ item.label }}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-3">
+            <div class="logout-btn">
+            <button (click)="logout()" class="btn btn-danger">
+                <i class="fa fa-power-off"></i>
+            </button>
+        </div>
+        </div>
+    </div>
+</div>

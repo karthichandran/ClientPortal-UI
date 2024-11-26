@@ -1,0 +1,125 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin:0;
+    padding: 0;
+}
+.main-body{
+    margin-top: 90px;
+}
+button{
+    color: white;
+    background-color: rgb(224, 21, 21);
+    margin-top: 0;
+    padding-top: 0.2rem;
+    padding-right: 1rem;
+    padding-bottom: 0.2rem;
+    padding-left: 1rem;
+    /* width: 10px; */
+    border-radius: 5px;
+    border: none;
+}
+.logout-btn{
+    position: absolute;
+    top: 10px;
+    right: 120px;
+}
+
+.menu-btn{
+    position: absolute;
+    top: 10px;
+    left: 120px;
+    min-width: 47px;
+}
+
+
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 41px;
+    left: 120px;
+    width: 200px;
+    /* height: 300px; */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0,   
+ 0.3);
+    z-index: 1;
+}
+
+
+.show {
+    display: block !important;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menuList {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.menuList:hover {
+    background-color: #f2f2f2;
+}
+
+
+
+
+@media (min-width: 677px) {  
+
+    .mobile-view{
+       visibility: hidden; 
+    }
+    .regular-view{
+        visibility: visible; 
+        padding: 0% 7.5%;
+     }
+  }
+
+@media (max-width: 676px) {
+    .logout-btn{
+        position: relative;
+        top: 10px;
+        right: 3vw;
+    }
+    .menu-btn{
+        position: relative;
+        top: -25px;
+        left: 3vw;
+    }
+    .menu {
+        top: 54px;
+        left: 4vw;
+    }
+
+    .mobile-view{
+       visibility: visible; 
+    }
+    .regular-view{
+        visibility: hidden; 
+     }
+  }
+
+
+  csm-spinner-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #e4e5e633;
+    z-index:1000000;
+  }
+  
+  .csm-spinner {
+    position: absolute;
+    z-index: 999999;
+    left: 50%;
+    top: 50%;
+  }

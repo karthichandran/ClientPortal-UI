@@ -1,0 +1,81 @@
+   <div class="container my-4">
+    <div class="profile-header">
+      <h1 class="page-header">Property Details</h1>
+      <p><span class="key">Customer Name: </span><span>{{getCustomerName()}}</span></p>
+      <!-- <p><span class="key">Number of units: </span><span>{{clientData.length}}</span></p> -->
+    </div>
+    <!-- <div class="d-flex justify-content-end m-2 mb-4">
+      <button (click)="logout()">Logout</button>
+  </div> -->
+    
+    <div *ngFor="let unit of clientData; let i = index" class="row unit-row mb-4">
+      <div class="col-md-2 mb-4">
+        <img
+          [src]="getCompanyImage(unit.companyName)"
+          [alt]="unit.companyName"
+          class="company-logo"
+        />
+      </div>
+      <div class="col-md-10">
+        <div class="card unit-card">
+          <div class="card-body" (click)="notes=unit.notes">
+            <!-- <h5 class="card-title">Unit Number: {{unit.unitNo}}</h5> -->
+            <p><span class="key">Unit Number: </span><span> {{unit.unitNo}}</span></p>
+            <p><span class="key">Project Name: </span><span>{{unit.propertyName}}</span></p>
+            <div *ngFor ="let customer of unit.customerList; let j = index">
+                <div class="owner-section" *ngIf="customer.isPrimaryOwner">
+                    <p><span class="key ">Primary Owner : </span> <span>{{customer.name}} {{ customer.customerOptingOutDate ? ' (Opted Out On - ' + (customer.customerOptingOutDate| date:'dd/MM/yyyy' )+ ')':'' }}</span></p>
+                    <p><span class="key">PAN: </span><span>{{customer?.pan}}</span></p>
+                    <div class="row">
+                      <p class="col-12 col-md-8"><span class="key" >Income Tax Login Password: </span><span >{{showPassword[i][j]?.incomeTaxPassword ? customer?.incomeTaxPassword : 'XXXXXXX'}}</span></p>
+                      <div class="col-12 col-md-4 text-center">
+
+                        <button  (click)="togglePassword(i, j, 'incomeTaxPassword')" class="button show-pass-btn col-12 col-md-4 mb-2">{{ showPassword[i][j]?.incomeTaxPassword ? 'Hide' : 'Show' }} Income Tax Password</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <p class="col-12 col-md-8"><span class="key">Traces Login Password: </span><span >{{showPassword[i][j]?.tracesPassword ? customer?.tracesPassword : 'XXXXXXX'}}</span></p>
+                      <div class="col-12 col-md-4 text-center">
+
+                        <button  (click)="togglePassword(i, j, 'tracesPassword')" class="button show-pass-btn col-12 col-md-4 mb-2">{{ showPassword[i][j]?.tracesPassword ? 'Hide' : 'Show' }} Traces Password</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div *ngIf="!customer.isPrimaryOwner" class="co-owner-section mt-3">
+                    <p>
+                      <span class="key">Co Owner:</span> 
+                      <span>
+                      {{customer.name}}{{ customer.customerOptingOutDate ? ' (Opted Out On - ' +( customer.customerOptingOutDate| date:'dd/MM/yyyy' )+ ')':'' }}
+                      </span>
+                    </p>
+                    
+                    <p><span class="key">PAN: </span><span>{{customer?.pan}}</span></p>
+                    <div class="row">
+                      <p class="col-12 col-md-8"><span class="key" >Income Tax Login Password: </span><span >{{showPassword[i][j]?.incomeTaxPassword ? customer?.incomeTaxPassword : 'XXXXXXX'}}</span></p>
+                      <div class="col-12 col-md-4 text-center">
+                        <button  (click)="togglePassword(i, j, 'incomeTaxPassword')" class="button show-pass-btn  mb-2">{{ showPassword[i][j]?.incomeTaxPassword ? 'Hide' : 'Show' }} Income Tax Password</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <p class="col-12 col-md-8"><span class="key">Traces Login Password: </span><span >{{showPassword[i][j]?.tracesPassword ? customer?.tracesPassword : 'XXXXXXX'}}</span></p>
+                      <div class="col-12 col-md-4 text-center">
+
+                        <button  (click)="togglePassword(i, j, 'tracesPassword')" class="button show-pass-btn col-12 col-md-4 mb-2">{{ showPassword[i][j]?.tracesPassword ? 'Hide' : 'Show' }} Traces Password</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Notes</h5>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">Selected Unit</h6> -->
+        <p class="card-text">{{notes}}</p>
+      </div>
+    </div>
+  </div>
+  

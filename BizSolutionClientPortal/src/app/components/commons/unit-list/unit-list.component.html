@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    <div class="header text-center">
+        <h1 class="page-header">{{pageName}}</h1>
+    </div>
+    <!-- <div class="d-flex justify-content-end m-2 mb-4">
+        <button (click)="logout()">Logout</button>
+    </div> -->
+
+    <div *ngFor="let unit of units" class="unit-row mb-4">
+        <div class="row align-items-center w-100">
+            <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
+                <img [src]="getCompanyImage(unit.companyName)" [alt]="unit.companyName" class="company-logo-1 mb-2" />
+            </div>
+            <div class="col-12 col-lg-8">
+                <div class="unit-info text-center w-100 m-aut d-flex justify-content-between pr20">
+                    <p class="key-unit-page"><span class="key">Project Name:</span><br><span>{{unit.propertyName}}</span></p>
+                    <p class="key-unit-page"><span class="key">Unit No. :</span><br><span>{{unit.unitNo}}</span></p>
+                    <p class="key-unit-page"><span class="key">Declaration Date :</span><br><span>{{unit.declarationDate}}</span></p>
+
+                    <div class="">
+                        <div *ngFor="let customer of unit.customerList ">
+                            <div class="">
+                                <div *ngIf="customer.isPrimaryOwner" class="key-unit-page">
+                                  <span class="key ">Primary Owner:</span><br/>
+                                  <span>{{customer.name}}</span>
+                                </div>
+                                <div *ngIf="!customer.isPrimaryOwner" class="key-unit-page mt-2">
+                                    <span class="key">Co-Owner:</span><br/>
+                                    <span>{{customer.name}}</span>
+                                  </div>
+                              </div>
+                              
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-1 d-flex justify-content-center align-items-center mb-2 mt-3">
+                <button class="button" (click)="viewDeclaration(unit)">View</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- <app-dynamic-table [tableData]="formUnits">
+    </app-dynamic-table> -->
+    <!-- <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Notes</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Selected Unit</h6>
+          <p class="card-text">There comes the notes catured in the system coresponding to each Unit</p>
+        </div>
+      </div> -->
+</div>

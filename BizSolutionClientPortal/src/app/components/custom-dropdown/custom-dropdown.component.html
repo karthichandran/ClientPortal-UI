@@ -1,0 +1,12 @@
+<div class="dropdown-container">
+    <button (click)="toggleDropdown()" class="dropdown-button">
+      {{ selectedOption || 'Select an option' }}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" [class.show]="dropdownOpen">
+      <li *ngFor="let option of options" (click)="selectOption(option)">
+        {{ option }}
+      </li>
+    </ul>
+  </div>
+  

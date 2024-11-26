@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin:0;
+    padding: 0;
+}
+body{
+    background-color: #f6f4ed;
+    
+}
+span{
+    color: #1c3d43;
+}
+.page-header{
+    color: #1c3d43;
+    line-height: 1.1111;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-weight: 500;
+    font-size: clamp(3.125rem, 0.340rem + 4.641vw, 4.5rem);
+}
+.key{
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-weight: 700;
+    color:#1c3d43;
+}
+button{
+    color: white;
+    background-color: #1c3d43;
+    margin-top: 0;
+    padding-top: 0.2rem;
+    padding-right: 1rem;
+    padding-bottom: 0.2rem;
+    padding-left: 1rem;
+    /* width: 10px; */
+    border-radius: 5px;
+    border: none;
+}
+button:hover {
+    background-color: #25545c;
+  }
+
+  @media (max-width: 676px) {
+
+    .page-header{
+        font-size: clamp(2.525rem, 0.340rem + 4.641vw, 4.5rem);
+    }
+  }

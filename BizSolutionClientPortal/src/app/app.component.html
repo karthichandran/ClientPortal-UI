@@ -1,0 +1,35 @@
+<div class="container" *ngIf="showLogoutButton">
+    <div class="mobile-view">
+    <div class="d-flex justify-content-end m-2 logout-btn">
+        <button (click)="logout()" class="btn btn-danger">
+            <i class="fa fa-power-off"></i>
+        </button>
+    </div>
+     <div class="d-flex justify-content-start m-2">
+        <button  class="btn btn-danger  menu-btn" (click)="toggleMenu()">
+            <i class="fa fa-bars" *ngIf="!isMenuVisible"></i>
+            <p *ngIf="isMenuVisible">X</p>
+        </button>
+    </div>
+   <div class="menu " [ngClass]="{'show': isMenuVisible}" (click.stop)="preventClick()">
+        <div *ngFor="let menuItem of menuItems" >
+           <div class="menuList" (click)="navigateToPage(menuItem.link)">
+            {{menuItem.label}}
+           </div>
+           <hr>
+        </div>
+    </div>
+</div>
+   
+</div>
+<div class=" regular-view" *ngIf="showLogoutButton">
+    <app-horizontal-menu></app-horizontal-menu>
+</div>
+<router-outlet></router-outlet>
+
+<div #csmSpinner class="csm-spinner-container" style="display:none">
+    <div class="csm-spinner">
+        <img src="assets/circle-1700_128.gif" alt="A fun GIF">       
+     
+    </div>
+  </div>

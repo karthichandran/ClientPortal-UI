@@ -1,0 +1,110 @@
+[
+  {
+    "propertyId": 11,
+    "propertyName": "Prestige Green Gables",
+    "unitNo": "20780",
+    "companyName": "Prestige",
+    "companyLogo": null,
+    "customerList": [
+      {
+        "customerID": 18257,
+        "name": "Anand Kishore P R Vachani",
+        "pan": "AANPV2131N",
+        "tracesPassword": "Anan&123",
+        "customerOptingOutDate": null,
+        "incomeTaxPassword": "KA05mt6220@",
+        "isPrimaryOwner": true
+      }
+    ]
+  },
+  {
+    "propertyId": 11,
+    "propertyName": "Prestige Green Gables",
+    "unitNo": "10950",
+    "companyName": "Prestige",
+    "companyLogo": null,
+    "customerList": [
+      {
+        "customerID": 18257,
+        "name": "Anand Kishore P R Vachani",
+        "pan": "AANPV2131N",
+        "tracesPassword": "Anan&123",
+        "customerOptingOutDate": null,
+        "incomeTaxPassword": "KA05mt6220@",
+        "isPrimaryOwner": false
+      }
+    ]
+  },
+  {
+    "propertyId": 22,
+    "propertyName": "Prestige Lavender Fields",
+    "unitNo": "12095",
+    "companyName": "Prestige",
+    "companyLogo": null,
+    "customerList": [
+      {
+        "customerID": 18257,
+        "name": "Anand Kishore P R Vachani",
+        "pan": "AANPV2131N",
+        "tracesPassword": "Anan&123",
+        "customerOptingOutDate": null,
+        "incomeTaxPassword": "KA05mt6220@",
+        "isPrimaryOwner": false
+      }
+    ]
+  },
+  {
+    "propertyId": 11,
+    "propertyName": "Prestige Green Gables",
+    "unitNo": "1095",
+    "companyName": "Prestige",
+    "companyLogo": null,
+    "customerList": [
+      {
+        "customerID": 18257,
+        "name": "Anand Kishore P R Vachani",
+        "pan": "AANPV2131N",
+        "tracesPassword": "Anan&123",
+        "customerOptingOutDate": null,
+        "incomeTaxPassword": "KA05mt6220@",
+        "isPrimaryOwner": true
+      }
+    ]
+  },
+  {
+    "propertyId": 64,
+    "propertyName": "Prestige Park Grove",
+    "unitNo": "90304",
+    "companyName": "Prestige",
+    "companyLogo": null,
+    "customerList": [
+      {
+        "customerID": 18257,
+        "name": "Anand Kishore P R Vachani",
+        "pan": "AANPV2131N",
+        "tracesPassword": "Anan&123",
+        "customerOptingOutDate": null,
+        "incomeTaxPassword": "KA05mt6220@",
+        "isPrimaryOwner": true
+      }
+    ]
+  },
+  {
+    "propertyId": 11,
+    "propertyName": "Prestige Green Gables",
+    "unitNo": "2078",
+    "companyName": "Prestige",
+    "companyLogo": null,
+    "customerList": [
+      {
+        "customerID": 18257,
+        "name": "Anand Kishore P R Vachani",
+        "pan": "AANPV2131N",
+        "tracesPassword": "Anan&123",
+        "customerOptingOutDate": null,
+        "incomeTaxPassword": "KA05mt6220@",
+        "isPrimaryOwner": false
+      }
+    ]
+  }
+]

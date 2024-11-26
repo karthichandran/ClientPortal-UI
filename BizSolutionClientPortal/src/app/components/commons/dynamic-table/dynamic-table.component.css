@@ -1,0 +1,84 @@
+.table-responsive {
+    overflow-x: auto;
+    /* overflow-y: auto; */
+    max-height: 300px;
+    max-width: 100vw;
+    /* overflow-x: hidden; */
+    white-space: nowrap;
+  }
+
+  .show-scroll-x {
+    overflow-x: auto; /* Enable horizontal scrolling when 'View More' is clicked */
+}
+
+  th {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff; /* Set background color to match the table */
+    z-index: 2; /* Ensure the header stays on top */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); /* Optional: Add a shadow for better visibility */
+  }
+  
+  thead th {
+    position: sticky;
+    top: 0;
+  }
+
+  /* For Chrome, Edge, and Safari */
+.table-responsive::-webkit-scrollbar {
+    width: 10px; 
+    height: 15px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background-color: #555; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Roundness of the scrollbar thumb */
+    border: 3px solid #f1f1f1; /* Padding around the thumb */
+  }
+  .table > :not(caption) > * > *{
+    z-index: 0 !important;
+  }
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color of the scrollbar thumb on hover */
+  }
+  td{
+    background-color: #f2f7e5 !important;
+  }
+  .container{
+    margin: auto;
+    width: 100vw;
+    padding: 0px;
+  }
+  .si-no{
+    min-width: 60px;
+    width: 60px;
+  }
+  .select-all {
+    background-color: #1c3d43; /* Background color */
+    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+    text-align: center;
+    color: white; /* Center the text */
+    padding-left: 0px;
+    padding-right: 0px;
+    font-weight: 400;
+    min-width: 80px;
+    width: 80px;
+  }
+  
+  .select-all.selected {
+    background-color: #25545c; /* Different color when all are selected */
+  }
+  
+  @media (max-width: 676px){
+    .container{
+      max-width: 99.5vw;
+      margin: 0px !important;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  
