@@ -70,9 +70,9 @@ getNumberOfUnits(): number {
 }
 getCompanyImage(companyName: string): string {
   if (companyName.toLowerCase() === 'prestige' || companyName.toLowerCase() === 'repro') {
-    return this.bizLogo;
+    return  this.reproLogo;
   } else {
-    return this.reproLogo;
+    return  this.bizLogo;
   }
 }
 }

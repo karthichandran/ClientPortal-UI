@@ -71,9 +71,9 @@ reproLogo = 'assets/repro-logo.png'
   }
   getCompanyImage(companyName: string): string {
     if (companyName.toLowerCase() === 'prestige' || companyName.toLowerCase() === 'repro') {
-      return this.bizLogo;
+      return  this.reproLogo;
     } else {
-      return this.reproLogo;
+      return  this.bizLogo;
     }
   }
 
@@ -113,14 +113,17 @@ reproLogo = 'assets/repro-logo.png'
           selected: false
         });
       });
-      var headers=["Date Of Payment","Receipt No","Amount Paid","GST Amount","TDS Amount","Payment Status","Remark"];
+      var sumColumns=["AmountPaid","TDSAmount","GSTAmount"];
+      var headers=["Date of Payment","Receipt No","Amount Paid","GST Amount","TDS Amount","Payment Status","Remark"];
       var model = {
         fileName:"Seller-payments",
         unitNo: unitNo,
         notes:note,
         projectName: project,
         data: data,
-        header:headers
+        header:headers,
+        sumColumns:sumColumns,
+        showSelection:true
       }
       this.dataService.setData(model);
       this.router.navigate(['/table', 0]);

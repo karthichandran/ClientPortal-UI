@@ -6,11 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ClientService } from './services/client.service';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './components/commons/menu/menu.component';
+import { FaqComponent } from './faq/faq.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LoginComponent,HeaderComponent,HttpClientModule,CommonModule,MenuComponent],
+  imports: [RouterOutlet,LoginComponent,HeaderComponent,HttpClientModule,CommonModule,MenuComponent,FaqComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,12 +22,19 @@ export class AppComponent implements OnInit {
   
   showLogoutButton = false;
   isMenuVisible = false;
+  // menuItems = [
+  //   { label: 'Property Details', link: '/' },
+  //   { label: 'Seller Payment', link: '/payments-to-seller' },    
+  //   { label: 'TDS Compliance', link: '/tds-compliance' },
+  //   { label: 'Form 16B', link: '/form-16B' }   
+  // ];
   menuItems = [
-    { label: 'Property Details', link: '/' },
-    { label: 'Seller Payment', link: '/payments-to-seller' },    
-    { label: 'TDS Compliance', link: '/tds-compliance' },
-    { label: 'Form 16B', link: '/form-16B' }   
+    { label: 'My Properties', link: '/' },
+    { label: 'Payments to Seller', link: '/payments-to-seller' },    
+    { label: 'TDS Payments', link: '/tds-compliance' },
+    { label: 'Form 16B Certificates', link: '/form-16B' }   
   ];
+
 
   toggleMenu() {
     this.isMenuVisible = !this.isMenuVisible;
@@ -38,7 +46,7 @@ export class AppComponent implements OnInit {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           // Check if the current route is the login page
-          this.showLogoutButton = event.url !== '/login';
+          this.showLogoutButton = (event.url !== '/login' &&  event.url !== '/faq') ;
         }
       });
 

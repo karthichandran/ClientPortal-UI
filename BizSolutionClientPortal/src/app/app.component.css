@@ -82,6 +82,13 @@ button{
         visibility: visible; 
         padding: 0% 7.5%;
      }
+
+     .logout-btn{
+        position: relative;
+        top: 10px;
+        right: 3vw;
+        margin-top: 3px;
+    }
   }
 
 @media (max-width: 676px) {

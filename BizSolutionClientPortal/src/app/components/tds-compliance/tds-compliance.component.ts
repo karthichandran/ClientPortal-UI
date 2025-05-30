@@ -71,9 +71,9 @@ pageName = "TDS Compliance";
   }
   getCompanyImage(companyName: string): string {
     if (companyName.toLowerCase() === 'prestige' || companyName.toLowerCase() === 'repro') {
-      return this.bizLogo;
+      return  this.reproLogo;
     } else {
-      return this.reproLogo;
+      return  this.bizLogo;
     }
   }
 
@@ -94,6 +94,9 @@ pageName = "TDS Compliance";
     return this.clientService.getTdsCompliancePaymentList(companyId, ownershipId);
   }
 
+  IsDefined(string: string) {
+    return string !== undefined && string !== null && string !== '';
+  }
   paymentDetails(unit: any) {
     var companyId = this.getCompanyId(unit.companyName);
     this.getPaymentDetails(companyId, unit.ownershipId).subscribe(res => {
@@ -102,15 +105,18 @@ pageName = "TDS Compliance";
       var project = unit.propertyName;
       var note=unit.notes;
       var data = [];
+    // res= _.sortBy(res, item => new Date(item.paymentDate));
+    res= _.orderBy(res, item => new Date(item.paymentDate),['desc']);
+
       _.forEach(res, o => {
         data.push({
           CustomerName:o.customerName,
-          DateOfPayment: o.dateOfPayment===null?"":moment( o.dateOfPayment).format("DD-MM-yyyy"),
+          DateOfPayment: this.IsDefined(o.paymentDate)?moment( o.paymentDate).format("DD-MM-yyyy"):"",
           TDSAmount: o.tdsAmount,
           Status: o.status,
-          TDSPaidDate: o.tdsPaidDate===null?"":moment( o.tdsPaidDate).format("DD-MM-yyyy"),
-          CertificateNo:o.form16BCertificateNo,
-          Form16BDate:o.form16BDate===null?"":moment( o.form16BDate).format("DD-MM-yyyy"),
+          TDSPaidDate:  this.IsDefined(o.tdsPaidDate)?moment( o.tdsPaidDate).format("DD-MM-yyyy"):"",
+          CertificateNo:this.IsDefined( o.form16BCertificateNo)?o.form16BCertificateNo:"",
+          Form16BDate: this.IsDefined(o.form16BDate)?moment( o.form16BDate).format("DD-MM-yyyy"):"",
           ReceiptNo: o.receiptNo,
           AmountPaid:o.amountPaid,
           GSTAmount:o.gstAmount,
@@ -118,7 +124,8 @@ pageName = "TDS Compliance";
           selected: false
         });
       });
-      var headers=["Customer Name","Date Of Payment","TDS Amount", "Status","TDS Paid Date","Certificate No","Form16B Date","Receipt No","Amount Paid","GST Amount","Gross Amount"];
+      var sumColumns=["AmountPaid","TDSAmount","GSTAmount","GrossAmount"];
+      var headers=["Customer Name","Date of Payment","TDS Amount", "Status","TDS Paid Date","Certificate No","Form16B Date","Receipt No","Amount Paid","GST Amount","Gross Amount"];
 
       var model = {
         fileName:"TDS-Compliance",
@@ -126,7 +133,9 @@ pageName = "TDS Compliance";
         notes:note,
         projectName: project,
         data: data,
-        header:headers
+        header:headers,
+        sumColumns:sumColumns,
+        showSelection:true
       }
       this.dataService.setData(model);
       this.router.navigate(['/table', 0]);

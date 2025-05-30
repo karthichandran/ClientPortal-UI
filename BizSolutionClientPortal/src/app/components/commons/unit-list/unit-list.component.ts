@@ -146,9 +146,10 @@ reproLogo = 'assets/repro-logo.png'
   }
   getCompanyImage(companyName: string): string {
     if (companyName.toLowerCase() === 'prestige' || companyName.toLowerCase() === 'repro') {
-      return this.bizLogo;
-    } else {
       return this.reproLogo;
+    } else {
+     
+       return this.bizLogo;
     }
   }
   logout(){

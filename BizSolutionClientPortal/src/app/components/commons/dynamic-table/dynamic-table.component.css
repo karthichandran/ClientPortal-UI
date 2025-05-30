@@ -24,6 +24,10 @@
     top: 0;
   }
 
+  tfoot td{
+    position: sticky;
+    bottom:  0;
+  }
   /* For Chrome, Edge, and Safari */
 .table-responsive::-webkit-scrollbar {
     width: 10px; 

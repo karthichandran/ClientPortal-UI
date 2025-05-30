@@ -16,19 +16,40 @@
       <div class="">
         <div class="">
           <div class="login-header mb-2 text-center ">
-            <img src="assets/biz-logo.png" alt="Company Logo" class="logo img-fluid">
+            <!-- <img src="assets/biz-logo.png" alt="Company Logo" class="logo img-fluid"> -->
+            <img src="assets/repro-logo.png" alt="Company Logo" class="logo img-fluid">
           </div>
-          <h2 class="login-text text-center">Login</h2>
+          <h2 *ngIf="isLogin" class="login-text text-center">Login</h2>
+          <h2 *ngIf="!isLogin" class="login-text text-center">Reset Password</h2>
+
+          <div class="form-group" *ngIf="!isLogin">
+            <label for="password">Old Password</label>
+            <input class="form-control" type="password" [formControl] = "oldPassword" >
+          </div>
+          <div class="form-group" *ngIf="!isLogin">
+            <label for="password">New Password</label>
+            <input class="form-control" type="password" [formControl] = "newPassword" >
+          </div>
+          <div class="form-group" *ngIf="!isLogin">
+            <label for="password">Confirm Password</label>
+            <input class="form-control" type="password" [formControl] = "confirmPassword" >
+          </div>
+          <button *ngIf="!isLogin" class="btn mt-3 login-btn" (click)="saveNewPassword()">Save</button>
+          <button  *ngIf="!isLogin" class="btn mt-3 cancel-btn" (click)="cancel()">Cancel</button>
+          
           <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-            <div class="form-group">
+            <div class="form-group" *ngIf="isLogin">
               <label for="username">User ID (PAN)</label>
               <input class="form-control" [formControl] = "userName" (input)="validatePAN($event)">
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="isLogin">
               <label for="password">Password</label>
-              <input class="form-control" [formControl] = "password">
+              <input class="form-control" type="password" [formControl] = "password" >
             </div>
-            <button type="submit" class="btn mt-3 login-btn">Login</button>
+            <button type="submit" *ngIf="isLogin" class="btn mt-3 login-btn">Login</button>
+
+          
+
             <div class="forgot-password text-center mt-2">
               <div *ngIf="message">
                 <p [class]="messageClass">{{ message }}</p>
@@ -37,7 +58,7 @@
             </div>
           </form>
           <div class="faqs text-center mt-1">
-            <a href="#" (click)="openFAQs()" class="text-decoration-none">FAQs</a>
+            <a (click)="openFAQs()" class="text-decoration-none" style="cursor: pointer;">FAQs</a>
           </div>
         </div>
       </div>

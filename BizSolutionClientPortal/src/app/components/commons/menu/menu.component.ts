@@ -12,19 +12,29 @@ import { ClientService } from '../../../services/client.service';
 export class MenuComponent {
     constructor(public clientService: ClientService,private router:Router,){}
   // Define menu items
-  menuItems = [
-    { label: 'Property Details', link: '/' },
-    { label: 'Seller Payment', link: '/payments-to-seller' },
-    { label: 'TDS Compliance', link: '/tds-compliance' },
-    { label: 'Form 16B', link: '/form-16B' }  
+  // menuItems = [
+  //   { label: 'Property Details', link: '/' },
+  //   { label: 'Seller Payment', link: '/payments-to-seller' },
+  //   { label: 'TDS Compliance', link: '/tds-compliance' },
+  //   { label: 'Form 16B', link: '/form-16B' }  
    
+  // ];
+  menuItems = [
+    { label: 'My Properties', link: '/' },
+    { label: 'Payments to Seller', link: '/payments-to-seller' },    
+    { label: 'TDS Payments', link: '/tds-compliance' },
+    { label: 'Form 16B Certificates', link: '/form-16B' }   
   ];
-
-  onMenuClick(item: any) {
+  activeIndex: number = 0;
+  onMenuClick(item: any,index: number) {
     console.log('Menu clicked:', item.label);
+    this.activeIndex = index;
   }
   logout(){
     this.clientService.logout();
     this.router.navigate(["/login"]);
   }
+  
+
+
 }

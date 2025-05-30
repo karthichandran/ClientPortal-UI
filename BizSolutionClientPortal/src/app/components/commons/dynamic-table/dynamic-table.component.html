@@ -1,10 +1,10 @@
 <div class="container mb-4 ">
   <div class="row text-center mt-3">
     <div class="col-md-6">
-      <p><span class="key">Project Name:</span><span>  {{projectName}}</span></p>
+      <p><span class="key">Project Name:</span><span> {{projectName}}</span></p>
     </div>
     <div class="col-md-6">
-      <p><span class="key">Unit No. :</span><span>   {{unitNo}}</span></p>
+      <p><span class="key">Unit No. :</span><span> {{unitNo}}</span></p>
     </div>
   </div>
   <div class="mb-3 mt-3 d-flex justify-content-between">
@@ -16,8 +16,8 @@
       <thead>
         <tr>
           <th class="si-no">SI No</th>
-          <th *ngFor="let col of headers">{{ col }}</th>
-          <th class="select-all" (click)="toggleSelectAll()" [ngClass]="{'selected': allSelected}">
+          <th *ngFor="let col of headers"><span style="margin:0 15px 0 15px;"> {{ col }}</span></th>
+          <th *ngIf="showSelection" class="select-all" (click)="toggleSelectAll()" [ngClass]="{'selected': allSelected}">
             Select All
           </th>
         </tr>
@@ -26,23 +26,36 @@
         <tr *ngFor="let row of tableData; let i = index" class="table-info-custom">
           <td>{{ i + 1 }}</td>
           <td *ngFor="let col of columns">{{ row[col] }}</td>
-          <td>
+          <td *ngIf="showSelection">
             <input type="checkbox" [(ngModel)]="row.selected" (change)="checkIfAllSelected()">
           </td>
         </tr>
+       
       </tbody>
+      <tfoot>
+        <!-- Summation Row -->
+        <tr class="table-summary">
+          <td></td>
+          <td *ngFor="let col of columns">
+            <strong>{{ getColumnSum(col) }}</strong>
+          </td>
+          <td></td>
+        </tr>
+        </tfoot>
     </table>
-    
+
   </div>
-  
+
+ 
+
   <!-- <div class="d-flex justify-content-end mt-3">
     <button class="button" (click)="enableScrollX()">View {{isScrollXEnabled ? 'Less':'More'}}</button>
     
   </div> -->
-              <div class="card   mt-4 w100">
-                <div class="card-body">
-                  <h5 class="card-title key mt-2">Notes</h5>
-                  <p class="card-text mb-1">{{notes}}</p>
-                </div>
-              </div>
+  <div class="card   mt-4 w100">
+    <div class="card-body">
+      <h5 class="card-title key mt-2">Notes</h5>
+      <div class="card-text mb-1" style=" white-space: pre-line;">{{notes}}</div>
+    </div>
+  </div>
 </div>

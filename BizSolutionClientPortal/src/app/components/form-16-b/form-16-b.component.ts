@@ -74,10 +74,10 @@ reproLogo = 'assets/repro-logo.png'
   }
   getCompanyImage(companyName: string): string {
     if (companyName.toLowerCase() === 'prestige' || companyName.toLowerCase() === 'repro') {
-      return this.bizLogo;
+      return  this.reproLogo;
     } else {
-      return this.reproLogo;
-    }
+      return  this.bizLogo;
+    }   
   }
 
   getCompanyId(name: string) {
@@ -116,6 +116,7 @@ reproLogo = 'assets/repro-logo.png'
           selected: false
         });
       });
+      var sumColumns=["AmountPaid","TDSAmount"];
       var headers=["Customer Name","Amount Paid","TDS Amount","Certificate No","Certificate Date"];
       var model = {
         fileName:"Form-16B",
@@ -123,7 +124,9 @@ reproLogo = 'assets/repro-logo.png'
         projectName: project,
         notes:note,
         data: data,
-        header:headers
+        header:headers,
+        sumColumns:sumColumns,
+        showSelection:false
       }
     
       this.dataService.setData(model);

@@ -33,15 +33,25 @@ export class LoginComponent implements OnInit {
   password = new FormControl("",[
     Validators.required
   ])
-
+  oldPassword = new FormControl("",[
+   
+  ])
+  newPassword = new FormControl("",[
+    
+  ])
+  confirmPassword = new FormControl("",[    
+  ])
 
   loginForm = new FormGroup({
     userName : this.userName,
-    password : this.password
+    password : this.password,
+    // oldPassword : this.oldPassword,
+    // newPassword : this.newPassword,   
+    // confirmPassword : this.confirmPassword
   })
   message: string = '';
   messageClass: string = 'text-danger';
-
+isLogin:boolean = true;
   isMediumScreen!:boolean;
   constructor(private router: Router,
     private clientService:ClientService,
@@ -75,20 +85,50 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  forgotPassword(event : Event) {
+  forgotPassword(event : Event) {   
     event.preventDefault();
     if (!this.userName.valid) {
       this.message = 'Please enter a valid PAN';
       return;
     }
-
+this.isLogin=false;
     // Simulate sending an email
-    this.message = `Please check your email sent to 'XXXXXX' to reset password`;
-    this.messageClass = 'text-success'
-    // window.alert("design for this is not available ")
-
-    // Additional logic for sending email can be added here
+    // this.message = `Please check your email sent to 'XXXXXX' to reset password`;
+    // this.messageClass = 'text-success'
+   
   }
+cancel(){
+  this.isLogin=true; 
+}
+isDefined(value: any): boolean {
+  return value !== undefined && value !== null && value !== '';
+}
+saveNewPassword(){
+  var user = this.loginForm.value.userName;
+  var oldPwd =this.oldPassword.value;
+  var newPwd = this.newPassword.value;
+  var confirmPwd = this.confirmPassword.value;
+  if(this.isDefined(oldPwd) && this.isDefined(newPwd) && this.isDefined(confirmPwd)){    
+    if(newPwd != confirmPwd){
+      this.toastr.error("New Password and Confirm Password are not matching");
+      return;
+    }
+    this.clientService.savePassword(user, oldPwd,newPwd).subscribe((data: any) => {
+      this.oldPassword.setValue("");
+      this.newPassword.setValue("");  
+      this.confirmPassword.setValue("");
+      this.loginForm.reset();
+      this.toastr.success("Password is saved successfully");
+      this.isLogin=true;
+    }, (error) => {
+      var msg= error.error.error;
+      this.toastr.error(msg);
+    });
+  }else{
+    this.toastr.error("Please enter all the fields");
+    return;
+  }
+}
 
   onSubmit() {
     if (!this.loginForm.valid) {
@@ -102,7 +142,7 @@ export class LoginComponent implements OnInit {
       this.clientService.doLogin(user, pwd).subscribe((data: any) => {
         this.router.navigate(["/"]);
       }, (error) => {
-        this.toastr.error("Invalid Credentials")
+        this.toastr.error("Invalid Credentials");
       });
       this.clientService.loginStatusSubject.next(true);
 
@@ -111,6 +151,15 @@ export class LoginComponent implements OnInit {
 
   openFAQs() {
     // Open the FAQs page (you can navigate to a new route or open a modal)
-    this.router.navigate(['/faqs']);
+   // this.router.navigate(['/faq'], { replaceUrl: true });
+   const urlTree = this.router.createUrlTree(['/faq']);
+   // Serialize the URL tree into a string
+   const relativeUrl = this.router.serializeUrl(urlTree);
+   // Prepend the current origin to form an absolute URL
+   const fullUrl = window.location.origin +"/#"+ relativeUrl;
+   // Open the absolute URL in a new browser tab
+   window.open(fullUrl, '_blank');
+  
   }
+
 }

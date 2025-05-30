@@ -15,6 +15,12 @@
   
   .horizontal-menu li {
     margin-right: 20px;
+    /* border-right: 1px solid white; */
+    padding-right: 10px;
+  }
+  .active {
+    border-bottom: 2px solid white;
+    padding-bottom: 3px;
   }
   
   .horizontal-menu a {
@@ -30,6 +36,7 @@
 
   .menu-container{
     background-color: rgb(224, 21, 21); 
+    /* background-color:rgb(245 76 59);  */
     /* margin-left:120px; */
     margin-top:10px;  
  
@@ -37,4 +44,12 @@
   .logout-btn{
     margin-right: 10px;
     float: right;
+  }
+
+  @media (min-width: 677px) {  
+   
+     .logout-btn{
+       
+        margin-top: 3px;
+    }
   }

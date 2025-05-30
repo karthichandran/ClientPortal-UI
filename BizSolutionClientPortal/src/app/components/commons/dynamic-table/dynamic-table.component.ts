@@ -2,7 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
-
+import { ToastrService,ToastrModule ,provideToastr,TOAST_CONFIG  } from 'ngx-toastr';
 @Component({
   selector: 'app-dynamic-table',
   standalone: true,
@@ -21,7 +21,9 @@ export class DynamicTableComponent implements OnInit {
   notes:string;
   fileName:string;
   headers: string[] = [];
-  constructor(private location: Location, private dataService: DataService) {}
+  sumColumns: string[] = [];
+  showSelection: boolean = true; 
+  constructor(private location: Location, private dataService: DataService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
    // this.tableData = this.formUnits;
@@ -39,12 +41,18 @@ export class DynamicTableComponent implements OnInit {
     this.unitNo = data.unitNo;
     this.notes = data.notes;
     this.fileName=data.fileName;
-
+this.sumColumns=data.sumColumns;
     this.tableData = data.data;
     this.headers=data.header;
+    this.showSelection=data.showSelection;
     this.columns = Object.keys(this.tableData[0]).filter(key => key !== 'selected');
   }
-
+  getColumnSum(column: string): string {
+    var isSumColumn=this.sumColumns.find(x=>x==column);
+    if (isSumColumn==undefined) 
+      return "";
+    return this.tableData.reduce((sum, row) => sum + (Number(row[column]) || 0), 0).toFixed(2);
+  }
   // formUnits = [
   //   {
   //     amountPaid: '1000',
@@ -105,12 +113,23 @@ export class DynamicTableComponent implements OnInit {
     this.downloadData(this.tableData);
   }
   download() {
+    if(this.showSelection==true){
     const selectedRows = this.tableData.filter(row => row.selected);
-    this.downloadData(selectedRows);
+    if(selectedRows==undefined || selectedRows.length==0)
+    {
+      this.toastr.error('Please select at least one row to download.');
+      return;
+    }
+    this.downloadData(selectedRows);}
+    else
+    {
+      window.open('https://myprestige.prestigeconstructions.com/index', '_blank');
+    }
   }
 
   private downloadData(data: any[]) {
-    const csvData = this.convertToCSV(data);
+    const updatedData = data.map(({ selected, ...rest }) => rest);
+    const csvData = this.convertToCSV(updatedData);
     const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);

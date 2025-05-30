@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { of, Subject,Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import baseUrl from './backend-details';
-
+import { ToastrService,ToastrModule ,provideToastr,TOAST_CONFIG  } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
   http:HttpClient
   constructor(
-    http: HttpClient
+    http: HttpClient,private toastr: ToastrService
   ) { this.http = http}
   public loginStatusSubject = new Subject<boolean>();
 
@@ -43,6 +43,11 @@ export class ClientService {
       sessionStorage.setItem('client_refresh_token', res.refreshToken);
       this.startRefreshTokenTimer();
       return of(res);
+    }));
+  }
+  public savePassword(user: string, pwd: string,newPwd:string): Observable<any> {
+    return this.http.post('auth/savePassword', { 'username': user, 'password': pwd,'newPassword':newPwd }).pipe(map((res: any) => {
+return res;
     }));
   }
   
